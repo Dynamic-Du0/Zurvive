@@ -1,7 +1,40 @@
 [gd_scene format=3 uid="uid://cmr1scc5d64xf"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl1qu"]
+albedo_color = Color(0.34901962, 0.68235296, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m68by"]
+size = Vector3(7.1, 1, 9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8mod"]
+
 [node name="Main" type="Node3D" unique_id=1437144139]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1844330493]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5521772, 1.1538554, 0.8609184)
-size = Vector3(1, 1.1557617, 1)
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=2112392218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.004)
+use_collision = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CSGCombiner3D" unique_id=1470027923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.004)
+
+[node name="Land" type="CSGBox3D" parent="CSGCombiner3D/StaticBody3D" unique_id=1844330493]
+transform = Transform3D(-19.867552, 0, 0, 0, 4.9656568, 0, 0, 0, 15.97255, 0, 0, 0.004)
+size = Vector3(15, 1.1557617, 29.74472)
+material = SubResource("StandardMaterial3D_vl1qu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/StaticBody3D" unique_id=1570419992]
+transform = Transform3D(-41.52319, 0, 0, 0, 4.9656568, 0, 0, 0, 49.514183, 0, 0, 0.004)
+shape = SubResource("BoxShape3D_m68by")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="CSGCombiner3D" unique_id=1896355097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 2, -0.004)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/RigidBody3D" unique_id=1163914378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.004)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/RigidBody3D" unique_id=767059235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.004)
+material = SubResource("StandardMaterial3D_m8mod")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=114391379]
+transform = Transform3D(0.033493623, -0.4829629, 0.875, -0.12940954, 0.8660254, 0.48296297, -0.99102545, -0.12940954, -0.033493686, 4, 5, 2.004)
